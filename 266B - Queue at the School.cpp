@@ -1,26 +1,27 @@
-//4021768   Jul 4, 2013 7:57:17 PM	fuwutu	 266B - Queue at the School	 GNU C++0x	Accepted	15 ms	0 KB
-#include <iostream>
-#include <string>
+string[] arr = Console.ReadLine().Split(" ");
+int n = int.Parse(arr[0]);
+int t = int.Parse(arr[1]);
 
-using namespace std;
+char[] s = Console.ReadLine().ToCharArray();
 
-int main()
+for (int time = 0; time < t; time++)
 {
-    int n, t;
-    string s;
-    cin >> n >> t >> s;
-    while (t--)
+    int i = 0;
+    while (i < n - 1)
     {
-        for (int i = 1; i < n; ++i)
+        if (s[i] == 'B' && s[i + 1] == 'G')
         {
-            if (s[i] == 'G' && s[i-1] == 'B')
-            {
-                s[i] = 'B';
-                s[i-1] = 'G';
-                ++i;
-            }
+            char tmp = s[i];
+            s[i] = s[i + 1];
+            s[i + 1] = tmp;
+
+            i += 2;
+        }
+        else
+        {
+            i += 1;
         }
     }
-    cout << s << endl;
-    return 0;
 }
+
+Console.WriteLine(new string(s));
